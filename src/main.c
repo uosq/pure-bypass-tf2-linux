@@ -15,7 +15,7 @@ void Hooked_CL_CheckForPureServerWhitelist(void** pFilesToReload)
 __attribute__((constructor))
 void init()
 {
-	originalCheckForPureServerWhitelistFn = (CL_CheckForPureServerWhitelistFn)sigscan_module("engine.so", "83 3D ? ? ? ? 01 7E ? 80 3D ? ? ? ? ? 75 ?");
+	originalCheckForPureServerWhitelistFn = (CL_CheckForPureServerWhitelistFn)sigscan_module("engine.so", "83 3D ? ? ? ? 01 7E ? 80 3D ? ? ? ? 00 75");
 	detour_init(&CL_CheckForPureServerWhitelist_ctx, (void*)originalCheckForPureServerWhitelistFn, (void*)&Hooked_CL_CheckForPureServerWhitelist);
 	detour_enable(&CL_CheckForPureServerWhitelist_ctx);
 }
